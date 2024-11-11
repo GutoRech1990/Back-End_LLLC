@@ -5,6 +5,6 @@
 
 // Lista de usuários e senhas
 $users = [
-    'usuario1' => 'senha123',
+    'José' => 'senha123',
     'usuario2' => 'senha456'
 ];

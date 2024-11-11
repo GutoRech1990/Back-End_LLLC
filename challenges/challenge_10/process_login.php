@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         echo "Nome de usuário ou senha incorretos!";
+        echo "<br><a href='login.php'>Acessar página de login</a>";
     }
 }
 

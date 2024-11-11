@@ -1,0 +1,5 @@
+<?php 
+
+$serverStatus = "OK";
+
+?>

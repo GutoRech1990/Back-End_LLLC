@@ -1,0 +1,50 @@
+# Operateurs Logiques
+
+&& et
+|| ou
+! non
+and ( same as && )
+or ( same as || )
+
+_________________________
+# Opérateur de comparaison
+
+== Égal 
+!= Pas égal 
+=== Identique
+!== Pas Identique
+> Plus grand que 
+>= Plus grand ou égal 
+< Moins de 
+<= Inférieur ou égal 
+
+_________________________
+#Opérateurs arithmétiques
+
+Addition (+)
+Soustraction (-)
+Multiplication (*)
+Division (/)
+Modulo (%)
+Exponentiation (**)
+
+_________________________
+#Manipulation de caracteres
+
+strtoupper()
+strtolower()
+ucwords() - Majuscule la premiere
+ucfirst() - Majuscule premiere d'une chaine
+
+_________________________
+
+
+strpos($text, "World") - para encontrar uma palavra em alguma posição
+
+str_contains()
+str_starts_with()
+str_ends_with()
+
+trim($text) - tirar os espaços no começo e no final
+ltrim($text) - tirar do começo somente
+rtrim($text) - tira do final somente

@@ -15,8 +15,11 @@
         // Este arquivo contém a lógica de verificação de login.
         // Ele verifica se o nome de usuário e a senha são válidos,
         // iniciando uma sessão em caso de sucesso.
+        
         session_start();
+        
         include 'config.php'; // Inclui a lista de usuários
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = $_POST['username'];
             $password = $_POST['password'];

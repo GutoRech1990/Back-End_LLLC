@@ -12,11 +12,13 @@ if (!isset($_SESSION["etudiants"])) {
 // Ceci sera remplacer par un stockage persistent = Base de données My SQL
 function addStudent($name, $age, $grade)
 {
-    $_SESSION["etudiants"][] = [
-        "name" => $name,
-        "age" => $age,
-        "grade" => $grade
-    ];
+    if (!empty($name) && !empty($age) && !empty($grade)) {
+        $_SESSION['students'][] = [
+            'name' => $name,
+            'age' => $age,
+            'grade' => $grade
+        ];
+    }
 }
 
 // Fonction pour mettre à jour un étudiant

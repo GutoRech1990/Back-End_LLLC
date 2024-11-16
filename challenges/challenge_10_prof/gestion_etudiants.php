@@ -57,28 +57,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Système de Gestion des Étudiants</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+    body {
+        background-color: #f8f9fa;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-        }
+    .container {
+        max-width: 800px;
+        margin: 2rem auto;
+    }
 
-        .form-control {
-            max-width: 400px;
-        }
+    .form-control {
+        max-width: 400px;
+    }
 
-        .card {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
+    .card {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
 
-        .card-header {
-            background-color: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-            font-weight: bold;
-        }
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #e9ecef;
+        font-weight: bold;
+    }
     </style>
 </head>
 
@@ -186,12 +186,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
-        function fillUpdateForm(name, age, grade) {
-            document.getElementById('update_old_name').value = name;
-            document.getElementById('update_name').value = name;
-            document.getElementById('update_age').value = age;
-            document.getElementById('update_grade').value = grade;
-        }
+    function fillUpdateForm(name, age, grade) {
+        document.getElementById('update_old_name').value = name;
+        document.getElementById('update_name').value = name;
+        document.getElementById('update_age').value = age;
+        document.getElementById('update_grade').value = grade;
+    }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,8 +1,15 @@
 <?php
-require_once __DIR__ . "/config/database.php";
-require_once __DIR__ . "/products/get_all.php";
 
-$products = getAllProducts();
+require_once __DIR__ . "/config/database.php";
+require_once __DIR__ . "/products/get-one.php";
+
+// Vérifier si un ID est fourni dans GET
+if (!isset($_GET["id"])) {
+    header("Location: index.php");
+}
+// Récuperer le produit correpondant 
+$product = getProductById($_GET["id"]);
+
 
 ?>
 
@@ -26,26 +33,20 @@ $products = getAllProducts();
     </header>
     <main>
         <div class="container mt-5">
-            <h1 class="mb-4">Liste de Produits</h1>
-            <div class="row">
-                <?php foreach ($products as $product) { ?>
-                    <!-- PHP va répeter ce qui se trouve ici pour chaque produit -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card shadow"
-                            onclick="window.location.href='product_details.php?id=<?php echo $product['id'] ?>'">
-                            <div class="card-body">
-                                <h4 class="text-primary"><?php echo $product["nom"] ?></h4>
-                                <p class="card-text"><?php echo $product["description"] ?></p>
-                                <p class="card-text"><?php echo $product["prix"] ?> €</p>
-                                <p class="card-text"><?php echo $product["stock"] ?></p>
-                            </div>
-                        </div>
-                    </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+                    <li class="breadcrumb-item"><?php echo $product["nom"] ?></li>
+                </ol>
+            </nav>
 
-                <?php } ?>
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title text-primary"><?php echo $product["nom"] ?></h1>
+                    <p class="card-text"><?php echo $product["description"] ?></p>
+                </div>
             </div>
         </div>
-
     </main>
     <footer>
         <!-- place footer here -->

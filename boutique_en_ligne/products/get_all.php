@@ -22,3 +22,7 @@ function getAllProducts()
 // echo "<pre>";
 // var_dump($products);
 // echo "</pre>";
+
+// foreach ($products as $product) {
+//     echo $product["nom"] . "<br>";
+// }

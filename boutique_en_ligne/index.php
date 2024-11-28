@@ -20,15 +20,15 @@ $products = getAllProducts();
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
     <style>
-        .card {
-            cursor: pointer;
-            transition: transfor 0.2s;
-        }
+    .card {
+        cursor: pointer;
+        transition: transfor 0.2s;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-        }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    }
     </style>
 
 </head>
@@ -45,18 +45,18 @@ $products = getAllProducts();
             </div>
             <div class="row">
                 <?php foreach ($products as $product) { ?>
-                    <!-- PHP va répeter ce qui se trouve ici pour chaque produit -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card shadow"
-                            onclick="window.location.href='product_details.php?id=<?php echo $product['id'] ?>'">
-                            <div class="card-body">
-                                <h4 class="text-primary"><?php echo $product["nom"] ?></h4>
-                                <p class="card-text"><?php echo $product["description"] ?></p>
-                                <p class="card-text"><?php echo $product["prix"] ?> €</p>
-                                <p class="card-text"><?php echo $product["stock"] ?></p>
-                            </div>
+                <!-- PHP va répeter ce qui se trouve ici pour chaque produit -->
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow"
+                        onclick="window.location.href='product_details.php?id=<?php echo $product['id'] ?>'">
+                        <div class="card-body">
+                            <h4 class="text-primary"><?php echo $product["nom"] ?></h4>
+                            <p class="card-text"><?php echo $product["description"] ?></p>
+                            <p class="card-text"><?php echo $product["prix"] ?> €</p>
+                            <p class="card-text"><?php echo $product["stock"] ?></p>
                         </div>
                     </div>
+                </div>
 
                 <?php } ?>
             </div>

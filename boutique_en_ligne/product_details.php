@@ -44,6 +44,9 @@ $product = getProductById($_GET["id"]);
                 <div class="card-body">
                     <h1 class="card-title text-primary"><?php echo $product["nom"] ?></h1>
                     <p class="card-text"><?php echo $product["description"] ?></p>
+                    <a href="products/update.php?id=<?php echo $product['id'] ?>" class="btn btn-warning">Update</a>
+                    <a href="products/delete.php?id=<?php echo $product['id'] ?>" class="btn btn-danger"
+                        onclick="return confirm('Do you really want to delete this product?')">Supprimer</a>
                 </div>
             </div>
         </div>

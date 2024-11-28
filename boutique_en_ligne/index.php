@@ -41,7 +41,7 @@ $products = getAllProducts();
         <div class="container mt-5">
             <div class="d-flex justify-content-between align-itens-center mb-4">
                 <h1 class="mb-4">Liste de Produits</h1>
-                <a href="products_create.php" class="btn btn-primary">+ Nouveau Produit</a>
+                <a href="product_create.php" class="btn btn-primary">+ Nouveau Produit</a>
             </div>
             <div class="row">
                 <?php foreach ($products as $product) { ?>

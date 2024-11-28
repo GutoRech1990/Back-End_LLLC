@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/get-one.php';
+
+
 function updateProduct($id, $data)
 {
     try {
         $pdo = getPDOConnection();
-        $sql = "UPDATE produits
-SET nom = :nom, description = :description, prix = :prix, stock = :stock WHERE id = :id";
+        $sql = "UPDATE produits SET nom = :nom, description = :description, prix = :prix, stock = :stock WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         return $stmt->execute([
             'id' => $id,

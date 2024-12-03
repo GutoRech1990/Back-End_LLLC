@@ -1,55 +1,86 @@
 <?php
+include 'config.php';
 session_start();
 // Initialiser le tableau des étudiants s'il n'existe pas
-if (!isset($_SESSION['students'])) {
-    $_SESSION['students'] = [];
-}
+// if (!isset($_SESSION['students'])) {
+//     $_SESSION['students'] = [];
+// }
 // Fonction pour ajouter un étudiant
 function addStudent($name, $age, $grade)
 {
     if (!empty($name) && !empty($age) && !empty($grade)) {
-        $_SESSION['students'][] = [
-            'name' => $name,
-            'age' => $age,
-            'grade' => $grade
-        ];
+        try {
+            $conn = connectDB();
+            $sql = "INSERT INTO students (name, age, grade) VALUES (:name, :age, :grade)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([
+                ':name' => $name,
+                ':age' => $age,
+                ':grade' => $grade
+            ]);
+        } catch (PDOException $e) {
+            echo "Erro ao adicionar estudante: " . $e->getMessage();
+        }
     }
 }
 // Fonction pour mettre à jour un étudiant
 function updateStudent($oldName, $name, $age, $grade)
 {
-    foreach ($_SESSION['students'] as $key => $student) {
-        if ($student['name'] === $oldName) {
-            $_SESSION['students'][$key] = [
-                'name' => $name,
-                'age' => $age,
-                'grade' => $grade
-            ];
-        }
+    try {
+        $conn = connectDB();
+        $sql = "UPDATE students SET name = :name, age = :age, grade = :grade WHERE name = :oldName";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            ':name' => $name,
+            ':age' => $age,
+            ':grade' => $grade,
+            ':oldName' => $oldName
+        ]);
+    } catch (PDOException $e) {
+        echo "Erro ao atualizar estudante: " . $e->getMessage();
     }
 }
 // Fonction pour supprimer un étudiant
 function removeStudent($name)
 {
-    foreach ($_SESSION['students'] as $key => $student) {
-        if ($student['name'] === $name) {
-            unset($_SESSION['students'][$key]);
-            $_SESSION['students'] = array_values($_SESSION['students']);
-        }
+    try {
+        $conn = connectDB();
+        $sql = "DELETE FROM students WHERE name = :name";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':name' => $name]);
+    } catch (PDOException $e) {
+        echo "Erro ao remover estudante: " . $e->getMessage();
+    }
+}
+
+
+// Função para listar todos os estudantes
+function getAllStudents()
+{
+    try {
+        $conn = connectDB();
+        $sql = "SELECT * FROM students";
+        $stmt = $conn->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Erro ao listar estudantes: " . $e->getMessage();
+        return [];
     }
 }
 
 // Fonction pour calculer la moyenne des notes
 function calculateAverageGrade()
 {
-    if (empty($_SESSION['students'])) {
+    try {
+        $conn = connectDB();
+        $sql = "SELECT AVG(grade) as average FROM students";
+        $stmt = $conn->query($sql);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['average'] ?? 0;
+    } catch (PDOException $e) {
+        echo "Erro ao calcular média: " . $e->getMessage();
         return 0;
     }
-    $total = 0;
-    foreach ($_SESSION['students'] as $student) {
-        $total += $student['grade'];
-    }
-    return $total / count($_SESSION['students']);
 }
 // Traitement des formulaires
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -87,28 +118,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Système de Gestion des Étudiants</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    body {
-        background-color: #f8f9fa;
-    }
+        body {
+            background-color: #f8f9fa;
+        }
 
-    .container {
-        max-width: 800px;
-        margin: 2rem auto;
-    }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
 
-    .form-control {
-        max-width: 400px;
-    }
+        .form-control {
+            max-width: 400px;
+        }
 
-    .card {
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    }
+        .card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
 
-    .card-header {
-        background-color: #f8f9fa;
-        border-bottom: 2px solid #e9ecef;
-        font-weight: bold;
-    }
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -156,25 +187,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($_SESSION['students'] as $student): ?>
-                            <tr>
-                                <td><?php echo
+                            <?php $students = getAllStudents();
+                            foreach ($students as $student): ?>
+                                <tr>
+                                    <td><?php echo
                                         htmlspecialchars($student['name']); ?></td>
-                                <td><?php echo
+                                    <td><?php echo
                                         htmlspecialchars($student['age']); ?></td>
-                                <td><?php echo
+                                    <td><?php echo
                                         htmlspecialchars($student['grade']); ?></td>
-                                <td>
-                                    <form method="POST" style="display:inline;"
-                                        action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                                        <input type="hidden" name="action" value="remove"><input type="hidden"
-                                            name="name" value="<?php echo htmlspecialchars($student['name']); ?>">
-                                        <button type="submit" class="btn btndanger btn-sm">Supprimer</button>
-                                    </form>
-                                    <button type="button" class="btn btnwarning btn-sm"
-                                        onclick="fillUpdateForm('<?php echo htmlspecialchars($student['name']); ?>', '<?php echo htmlspecialchars($student['age']); ?>', '<?php echo htmlspecialchars($student['grade']); ?>')">Modifier</button>
-                                </td>
-                            </tr>
+                                    <td>
+                                        <form method="POST" style="display:inline;"
+                                            action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+                                            <input type="hidden" name="action" value="remove"><input type="hidden"
+                                                name="name" value="<?php echo htmlspecialchars($student['name']); ?>">
+                                            <button type="submit" class="btn btndanger btn-sm">Supprimer</button>
+                                        </form>
+                                        <button type="button" class="btn btnwarning btn-sm"
+                                            onclick="fillUpdateForm('<?php echo htmlspecialchars($student['name']); ?>', '<?php echo htmlspecialchars($student['age']); ?>', '<?php echo htmlspecialchars($student['grade']); ?>')">Modifier</button>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -218,12 +250,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <script>
-    function fillUpdateForm(name, age, grade) {
-        document.getElementById('update_old_name').value = name;
-        document.getElementById('update_name').value = name;
-        document.getElementById('update_age').value = age;
-        document.getElementById('update_grade').value = grade;
-    }
+        function fillUpdateForm(name, age, grade) {
+            document.getElementById('update_old_name').value = name;
+            document.getElementById('update_name').value = name;
+            document.getElementById('update_age').value = age;
+            document.getElementById('update_grade').value = grade;
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -27,7 +27,7 @@ session_start();
                     Bienvenue <?php echo $_SESSION["username"]; ?>!
                 </div>
                 <div class="mb-3">
-                    <a href="protected.php" class="btn btn-primary">Accéder à la page protégée</a>
+                    <a href="gestion_etudiants.php" class="btn btn-primary">Accéder à la page protégée</a>
                 </div>
                 <a href="logout.php" class="btn btn-danger">Déconnexion</a>
             <?php } else { ?>

@@ -199,7 +199,7 @@ function calculateAverageGrade()
 {
     try {
         $conn = connectDB();
-        $sql = "SELECT AVG(grade) as average FROM students";
+        $sql = "SELECT AVG(score) as average FROM scores";
         $stmt = $conn->query($sql);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['average'] ?? 0;
@@ -248,28 +248,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Système de Gestion des Étudiants</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+    body {
+        background-color: #f8f9fa;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-        }
+    .container {
+        max-width: 800px;
+        margin: 2rem auto;
+    }
 
-        .form-control {
-            max-width: 400px;
-        }
+    .form-control {
+        max-width: 400px;
+    }
 
-        .card {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
+    .card {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
 
-        .card-header {
-            background-color: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-            font-weight: bold;
-        }
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #e9ecef;
+        font-weight: bold;
+    }
     </style>
 </head>
 
@@ -324,32 +324,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <tbody>
                             <?php $students = getAllStudents();
                             foreach ($students as $student): ?>
-                                <tr>
-                                    <td><?php echo
+                            <tr>
+                                <td><?php echo
                                         htmlspecialchars($student['name']); ?></td>
-                                    <td><?php echo
+                                <td><?php echo
                                         htmlspecialchars($student['age']); ?></td>
-                                    <td><?php echo
+                                <td><?php echo
                                         htmlspecialchars($student['subject']); ?></td>
-                                    <td><?php echo
+                                <td><?php echo
                                         htmlspecialchars($student['score']); ?></td>
-                                    <td>
-                                        <form method="POST" style="display:inline;"
-                                            action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                                            <input type="hidden" name="action" value="remove"><input type="hidden"
-                                                name="name" value="<?php echo htmlspecialchars($student['id']); ?>">
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                        </form>
-                                        <button type="button" class="btn btn-warning btn-sm" onclick="fillUpdateForm(
+                                <td>
+                                    <form method="POST" style="display:inline;"
+                                        action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+                                        <input type="hidden" name="action" value="remove"><input type="hidden"
+                                            name="name" value="<?php echo htmlspecialchars($student['id']); ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                    <button type="button" class="btn btn-warning btn-sm" onclick="fillUpdateForm(
                                         '<?php echo htmlspecialchars($student['id']); ?>',
                                         '<?php echo htmlspecialchars($student['name']); ?>',
                                         '<?php echo htmlspecialchars($student['age']); ?>',
                                         '<?php echo htmlspecialchars($student['subject']); ?>',
                                         '<?php echo htmlspecialchars($student['score']); ?>')">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                </tr>
+                                        Modifier
+                                    </button>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -395,13 +395,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <script>
-        function fillUpdateForm(studentId, name, age, subject, score) {
-            document.getElementById('update_student_id').value = studentId;
-            document.getElementById('update_name').value = name;
-            document.getElementById('update_age').value = age;
-            document.getElementById('update_subject').value = subject;
-            document.getElementById('update_score').value = score;
-        }
+    function fillUpdateForm(studentId, name, age, subject, score) {
+        document.getElementById('update_student_id').value = studentId;
+        document.getElementById('update_name').value = name;
+        document.getElementById('update_age').value = age;
+        document.getElementById('update_subject').value = subject;
+        document.getElementById('update_score').value = score;
+    }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

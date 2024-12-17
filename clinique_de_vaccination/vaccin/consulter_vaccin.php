@@ -54,46 +54,46 @@ if ($id) {
 
     <main>
         <?php if ($vaccin): ?>
-        <div class="info_vaccin">
-            <h2>Informations du Vaccin</h2>
-            <p><strong>ID:</strong> <?= $vaccin['id'] ?></p>
-            <p><strong>Nom:</strong> <?= $vaccin['nom'] ?></p>
-            <p><strong>Fabricant:</strong> <?= $vaccin['fabricant'] ?></p>
-            <p><strong>Fournisseur:</strong> <?= $vaccin['fournisseur'] ?></p>
-            <p><strong>Prix:</strong> <?= $vaccin['prix'] ?></p>
-        </div>
+            <div class="info_vaccin">
+                <h2>Informations du Vaccin</h2>
+                <p><strong>ID:</strong> <?= $vaccin['id'] ?></p>
+                <p><strong>Nom:</strong> <?= $vaccin['nom'] ?></p>
+                <p><strong>Fabricant:</strong> <?= $vaccin['fabricant'] ?></p>
+                <p><strong>Fournisseur:</strong> <?= $vaccin['fournisseur'] ?></p>
+                <p><strong>Prix:</strong> <?= $vaccin['prix'] ?></p>
+            </div>
 
-        <div class="liste_patients responsive-table">
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="5">
-                        <h2>Liste des Patients Vaccinés</h2>
-                    </td>
-                </tr>
-                <tr>
-                    <th>ID Patient</th>
-                    <th>Nom</th>
-                    <th>Age</th>
-                    <th>Date de naissance</th>
-                    <th>Date de vaccination</th>
-                </tr>
-                <?php if ($patients): ?>
-                <?php foreach ($patients as $patient): ?>
-                <tr>
-                    <td><?= $patient['patient_id'] ?></td>
-                    <td><?= $patient['patient_nom'] ?></td>
-                    <td><?= $patient['age'] ?></td>
-                    <td><?= date("d-m-Y", strtotime($patient['date_naissance'])) ?></td>
-                    <td><?= date("d-m-Y", strtotime($patient['date_vaccination'])) ?></td>
-                </tr>
-                <?php endforeach; ?>
-                <?php else: ?>
-                <tr>
-                    <td colspan="5">Aucun patient n'a reçu ce vaccin</td>
-                </tr>
-                <?php endif; ?>
-            </table>
-        </div>
+            <div class="liste_patients responsive-table">
+                <table class="table table-striped">
+                    <tr>
+                        <td colspan="5">
+                            <h2>Liste des Patients Vaccinés</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>ID Patient</th>
+                        <th>Nom</th>
+                        <th>Age</th>
+                        <th>Date de naissance</th>
+                        <th>Date de vaccination</th>
+                    </tr>
+                    <?php if ($patients): ?>
+                        <?php foreach ($patients as $patient): ?>
+                            <tr>
+                                <td><?= $patient['patient_id'] ?></td>
+                                <td><?= $patient['patient_nom'] ?></td>
+                                <td><?= $patient['age'] ?></td>
+                                <td><?= date("d-m-Y", strtotime($patient['date_naissance'])) ?></td>
+                                <td><?= date("d-m-Y", strtotime($patient['date_vaccination'])) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5">Aucun patient n'a reçu ce vaccin</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </div>
         <?php endif; ?>
     </main>
 </body>

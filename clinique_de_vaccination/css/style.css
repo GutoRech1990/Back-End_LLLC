@@ -2,6 +2,11 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 0 !important;
+}
+
 /* Header ----------------------------------------------------------------------- */
 header {
     background-color: #62a4f5;
@@ -134,4 +139,12 @@ tr:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.info_patient{
+    padding-left: 30px;
+}
+
+.info_vaccin{
+    padding-left: 30px;
 }

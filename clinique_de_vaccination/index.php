@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+// Verifier si le utilisateur est loged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    // Redirecioner a la page de login
+    header("Location: login/login.php");
+    exit;
+}
+
+// ---------------------------------------------------------------------------
+
 require 'DB/config.php';
 
 $patient_liste = [];
@@ -38,6 +49,7 @@ if ($sql->rowCount() > 0) {
             <button><a href="./patient/enregistrer_patient.php">Enregistrer patient</a></button>
             <button><a href="./vaccin/enregistrer_vaccin.php">Enregistrer vaccin</a></button>
             <button><a href="./vaccination/enregistrer_vaccination.php">Enregistrer vaccination</a></button>
+            <button style="background-color: red;"><a href=" ./login/logout.php">Logout</a></button>
         </div>
     </header>
 

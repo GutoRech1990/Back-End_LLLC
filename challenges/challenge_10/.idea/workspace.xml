@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9468672e-49d0-4f34-8baf-90b60fc931bd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../clinique_de_vaccination/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clinique_de_vaccination/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clinique_de_vaccination/css/style2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clinique_de_vaccination/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../clinique_de_vaccination/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clinique_de_vaccination/vaccin/consulter_vaccin.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../clinique_de_vaccination/vaccin/consulter_vaccin.php" afterDir="false" />
-    </list>
+    <list default="true" id="9468672e-49d0-4f34-8baf-90b60fc931bd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +52,7 @@
       <updated>1734432224284</updated>
       <workItem from="1734432225315" duration="892000" />
       <workItem from="1734433772996" duration="18000" />
+      <workItem from="1734463531632" duration="142000" />
     </task>
     <servers />
   </component>

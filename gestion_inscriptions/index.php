@@ -34,16 +34,19 @@ $enrollments = obtenirToutesInscriptions();
                 </thead>
                 <tbody>
                     <?php foreach ($etudiants as $etudiant): ?>
-                        <tr>
-                            <td><?= $etudiant['id'] ?></td>
-                            <td><?= htmlspecialchars($etudiant['nom']) ?></td>
-                            <td><?= htmlspecialchars($etudiant['email']) ?></td>
-                            <td>
-                                <a href="modifier_etudiant.php?id=<?= $etudiant['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
-                                <a href="supprimer_etudiant.php?id=<?= $etudiant['id'] ?>" class="btn btn-danger btn-sm">Supprimer</a>
-                                <a href="inscrire.php?id_etudiant=<?= $etudiant['id'] ?>" class="btn btn-info btn-sm">Inscrire à un Cours</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td><?= $etudiant['id'] ?></td>
+                        <td><?= htmlspecialchars($etudiant['nom']) ?></td>
+                        <td><?= htmlspecialchars($etudiant['email']) ?></td>
+                        <td>
+                            <a href="modifier_etudiant.php?id=<?= $etudiant['id'] ?>"
+                                class="btn btn-warning btn-sm">Modifier</a>
+                            <a href="supprimer_etudiant.php?id=<?= $etudiant['id'] ?>"
+                                class="btn btn-danger btn-sm">Supprimer</a>
+                            <a href="inscrire.php?id_etudiant=<?= $etudiant['id'] ?>"
+                                class="btn btn-info btn-sm">Inscrire à un Cours</a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -63,11 +66,11 @@ $enrollments = obtenirToutesInscriptions();
                 </thead>
                 <tbody>
                     <?php foreach ($cours as $coursItem): ?>
-                        <tr>
-                            <td><?= $coursItem['id'] ?></td>
-                            <td><?= htmlspecialchars($coursItem['titre']) ?></td>
-                            <td><?= htmlspecialchars($coursItem['description']) ?></td>
-                        </tr>
+                    <tr>
+                        <td><?= $coursItem['id'] ?></td>
+                        <td><?= htmlspecialchars($coursItem['titre']) ?></td>
+                        <td><?= htmlspecialchars($coursItem['description']) ?></td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -87,11 +90,11 @@ $enrollments = obtenirToutesInscriptions();
                 </thead>
                 <tbody>
                     <?php foreach ($enrollments as $enrollment): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($enrollment['nom_etudiant']) ?></td>
-                            <td><?= htmlspecialchars($enrollment['titre_cours']) ?></td>
-                            <td><?= $enrollment['date_inscription'] ?></td>
-                        </tr>
+                    <tr>
+                        <td><?= htmlspecialchars($enrollment['nom_etudiant']) ?></td>
+                        <td><?= htmlspecialchars($enrollment['titre_cours']) ?></td>
+                        <td><?= $enrollment['date_inscription'] ?></td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

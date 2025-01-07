@@ -6,12 +6,13 @@ $id = filter_input(INPUT_GET, "id");
 if ($id) {
     // Pour chercher le petient
     $sql = $pdo->prepare("SELECT * FROM patient WHERE id = :id");
-    $sql->bindValue(':id', $id);
+    $sql->bindValue(':id', $id); // On lie le paramètre :id à la variable $id
     $sql->execute();
     $patient = $sql->fetch(PDO::FETCH_ASSOC);
 
     // Pour chercher les vaccin du patient
-    $sql = $pdo->prepare("
+    // Le $pdo sers à preventer les injections SQL
+    $sql = $pdo->prepare(" 
         SELECT 
             v.date_vaccination as date_vaccination,
             vac.nom as nom_vaccin,
@@ -51,6 +52,7 @@ if ($id) {
     </header>
 
     <main>
+        <!-- Si le patient est trouvé vers la ligne 11 -->
         <?php if ($patient): ?>
             <div class="info_patient">
                 <h2>Informations du Patient</h2>
@@ -74,6 +76,7 @@ if ($id) {
                         <th>Fabricant</th>
                         <th>Fournisseur</th>
                     </tr>
+                    <!-- Si les vaccinations sont trouvées vers la linhe 27 -->
                     <?php if ($vaccinations): ?>
                         <?php foreach ($vaccinations as $vaccination): ?>
                             <tr>

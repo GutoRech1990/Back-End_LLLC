@@ -2,9 +2,8 @@
 
 session_start();
 
-// Verifier si le utilisateur est loged in
+// Verifier si le utilisateur n'est pas loged in et le rediriger vers la page de login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    // Redirecioner a la page de login
     header("Location: login/login.php");
     exit;
 }

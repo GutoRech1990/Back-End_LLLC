@@ -1,11 +1,13 @@
 <?php
 require '../DB/config.php';
 
+// Pour recevoir les donnees envoyer par la methode POST
 $nom = filter_input(INPUT_POST, 'nom');
 $age = filter_input(INPUT_POST, 'age');
 $adresse = filter_input(INPUT_POST, 'adresse');
 $date_naissance = filter_input(INPUT_POST, 'date_naissance');
 
+// Pour verifier si les champs sont remplis
 if ($nom && $age && $adresse && $date_naissance) {
     $sql = $pdo->prepare("INSERT INTO patient (nom, age, adresse, date_naissance) VALUES (:nom, :age, :adresse, :date_naissance)");
     $sql->bindValue(':nom', $nom);

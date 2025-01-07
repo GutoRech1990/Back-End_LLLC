@@ -19,6 +19,7 @@
     <main>
         <div class="login-container">
             <h2>Connexion</h2>
+            <!-- Formulaire de connexion, permettant à l'utilisateur d'entrer son nom d'utilisateur et son mot de passe -->
             <form action="login_action.php" method="POST">
                 <div class="form-control">
                     <label for="username">Nom d'utilisateur:</label>
@@ -31,6 +32,7 @@
                 </div>
 
                 <input type="submit" name="submit" value="Se connecter">
+                <!-- Les données seront envoyées à la page login_action.php -->
             </form>
         </div>
     </main>

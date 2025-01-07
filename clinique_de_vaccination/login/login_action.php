@@ -4,7 +4,7 @@ session_start();
 
 // Vérifier si le formulaire a été envoyé
 if (isset($_POST["submit"])) {
-    // Alors on traite les donnés envoyé
+    // Récupération des donnés envoyées par le formulaire
     $username = $_POST["username"];
     $password = $_POST["password"];
 
@@ -15,13 +15,13 @@ if (isset($_POST["submit"])) {
         // Création de varialbles de session
         $_SESSION["logged_in"] = true;
         $_SESSION["username"] = $username;
-        echo "Redirecionando...";
+        echo "Redirection...";
 
         // Redirection vers la page d'accueil utilisateur
         header("Location: ../index.php");
         exit();
     } else {
-        // Redirection vers la page index.html
+        // Redirection vers la page login.php
         echo "<script>
         alert('Utilisateur ou Mot de passe incorrect!!!');
         window.location.href = 'login.php';
@@ -29,3 +29,14 @@ if (isset($_POST["submit"])) {
         exit();
     }
 }
+
+/* session_regenerate_id(true); - Cette fonction régénère l'identifiant de session actuel et en crée un nouveau. 
+Le paramètre true indique que l'ancien identifiant doit être supprimé. 
+Cela permet d'éviter les attaques par fixation de session, où un attaquant pourrait essayer de réutiliser un ancien identifiant de session. */
+
+/* $_SESSION["logged_in"] = true; - Ici, une variable de session appelée logged_in est créée et fixée à true. 
+Cela indique que l'utilisateur est authentifié et connecté au système. */
+
+/* $_SESSION["username"] = $username; - Une autre variable de session appelée nom d'utilisateur est créée et fixée à la valeur du nom d'utilisateur fourni 
+dans le formulaire de connexion. 
+Cette variable peut être utilisée pour identifier l'utilisateur dans d'autres parties du système. */

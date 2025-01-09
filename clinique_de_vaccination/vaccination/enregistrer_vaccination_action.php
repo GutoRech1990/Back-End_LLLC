@@ -6,7 +6,7 @@ $id_vaccin = filter_input(INPUT_POST, 'id_vaccin', FILTER_VALIDATE_INT);
 $date_vaccination = filter_input(INPUT_POST, 'date_vaccination');
 
 if ($id_patient && $id_vaccin && $date_vaccination) {
-    // Vérifier si la vaccination n'existe pas déjà
+    // Vérifier si la vaccination n'existe pas déjà ----------
     $check_sql = $pdo->prepare("SELECT id FROM vaccination WHERE id_patient = :id_patient AND id_vaccin = :id_vaccin");
     $check_sql->bindValue(':id_patient', $id_patient);
     $check_sql->bindValue(':id_vaccin', $id_vaccin);
